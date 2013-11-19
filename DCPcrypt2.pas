@@ -47,7 +47,7 @@ type
 {$INCLUDE 'jedi.inc'}
 type
   {$IFNDEF DELPHIXE2_UP}
-  NativeInt = {$IFDEF WIN64} int64 {$ELSE} Longint {$ENDIF} ;
+  NativeInt = {$IFDEF CPU64} int64 {$ELSE} Longint {$ENDIF} ;
   {$ENDIF}
   PointerToInt = {$IFDEF DELPHIXE2_UP} PByte {$ELSE} NativeInt {$ENDIF} ;
 
@@ -274,7 +274,8 @@ procedure XorBlock(var InData1, InData2; Size: longword);
 
 implementation
 
-uses Windows;
+uses
+  {$IFDEF MSWINDOWS}Windows{$ELSE}{$IFDEF KYLIX}Libc{$ELSE}BaseUnix{$ENDIF}{$ENDIF};
 {$Q-}{$R-}
 
 
