@@ -34,8 +34,12 @@ uses
     { A few predefined types to help out }
 
 type
+  // PByte is defined in windows.pas assuming Delphi XE2 and later needs this
+  {$IFDEF DELPHIXE2_UP}
   Pbyte= ^byte;
   Pword= ^word;
+  {$ENDIF}
+
   Pdword= ^dword;
   Pint64= ^int64;
   dword= longword;
